@@ -7,20 +7,12 @@ export default new VueRouter({
 	mode: 'history',
 	routes: [
 		{
-			path: '/',
+			path: '/', // App.vue의 router-view 영역에 들어가는 view
 			component: () => import('@/views/Home.vue'),
 		},
 		{
-			path: '/js',
-			component: () => import('@/views/Js.vue'),
-		},
-		{
-			path: '/vue',
-			component: () => import('@/views/Vue.vue'),
-		},
-		{
-			path: '/java',
-			component: () => import('@/views/Java.vue'),
+			path: '/:menu',
+			component: () => import('@/views/BigMenuPage.vue'),
 		},
 	],
 });
