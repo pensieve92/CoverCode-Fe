@@ -1,10 +1,12 @@
 <template>
-	<div>js</div>
+	<div>
+		{{ $route.params.menu }}
+	</div>
 </template>
 
 <script>
 export default {
-	name: 'Js',
+	name: 'BigMenuPage',
 };
 </script>
 
