@@ -64,23 +64,9 @@
 				text-color-active="white"
 				text-color="white"
 				type="text"
+				:confirmTabChange="changeTab"
 			>
-				<ui-tab title="Js">
-					<!-- 탭에 아이콘 넣기 -->
-					<!--					<div slot="icon">-->
-					<!--						<ui-icon>javascript</ui-icon>-->
-					<!--					</div>-->
-
-					<!-- views -->
-					<router-view></router-view>
-				</ui-tab>
-
-				<ui-tab title="Vue">
-					<!-- views -->
-					<router-view></router-view>
-				</ui-tab>
-
-				<ui-tab title="Java">
+				<ui-tab v-for="menu of menus" :title="menu.title" :key="menu.key">
 					<!-- views -->
 					<router-view></router-view>
 				</ui-tab>
@@ -102,11 +88,13 @@ const menuOptions = [
 	},
 ];
 import 'keen-ui/src/bootstrap';
+import menus from '@/constents/menu';
 export default {
 	name: 'App',
 	data() {
 		return {
 			menuOptions,
+			menus,
 		};
 	},
 	computed: {
@@ -124,8 +112,13 @@ export default {
 		},
 	},
 	methods: {
-		navIconClick() {
-			alert('navIconClick');
+		async changeTab(o, n) {
+			if (n.title === o.title) return;
+			if (n.title === 'Home') {
+				await this.$router.push('/');
+			} else {
+				await this.$router.push('/' + n.title);
+			}
 		},
 	},
 };
