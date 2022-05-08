@@ -7,6 +7,8 @@ import 'keen-ui/dist/keen-ui.css';
 Vue.use(KeenUI);
 
 Vue.config.productionTip = false;
+// EventBus 생성
+Vue.prototype.$bus = new Vue();
 
 new Vue({
 	render: h => h(App),
