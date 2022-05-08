@@ -58,6 +58,7 @@
 			</ui-toolbar>
 
 			<ui-tabs
+				ref="tabs"
 				background-color="primary"
 				fullwidth
 				indicator-color="white"
@@ -66,7 +67,14 @@
 				type="text"
 				:confirmTabChange="changeTab"
 			>
-				<ui-tab v-for="menu of menus" :title="menu.title" :key="menu.key">
+				<!-- :id를 넣지 않으면 자동으로 unique id를 생성해서 넣어준다. -->
+				<!-- uniqe id생성 -->
+				<ui-tab
+					v-for="menu of menus"
+					:id="menu.title"
+					:key="menu.key"
+					:title="menu.title"
+				>
 					<!-- views -->
 					<router-view></router-view>
 				</ui-tab>
@@ -113,6 +121,14 @@ export default {
 	},
 	methods: {
 		async changeTab(o, n) {
+			// history
+			// 2022.05.08
+			// 내부에서 setActiveTab()를 사용하면 무한루프에 빠진다.
+
+			// setActiveTab() > changTab()을 호출한다.
+			// changeTab 내부에  setActiveTab()를 호출하면 무한루프에 빠진다.
+			// this.$refs.tabs.setActiveTab('Js');
+
 			if (n.title === o.title) return;
 			if (n.title === 'Home') {
 				await this.$router.push('/');
