@@ -74,7 +74,7 @@
 import UUID from '@/helpers/uuid';
 
 export default {
-	name: 'ui-collapsible',
+	name: 'PostCard',
 
 	props: {
 		open: {

@@ -92,7 +92,7 @@
 
 <script>
 export default {
-	name: 'PostCard',
+	name: 'PostCard2',
 	methods: {
 		clickIcon() {
 			console.log('click');
