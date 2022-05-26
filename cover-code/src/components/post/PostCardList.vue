@@ -17,16 +17,19 @@
 				</PostCardBody>
 			</template>
 		</PostCard>
+
+		<Post></Post>
 	</div>
 </template>
 
 <script>
 import PostCard from '@/components/post/PostCard';
 import PostCardBody from '@/components/post/PostCardBody';
+import Post from '@/components/post/Post';
 
 export default {
 	name: 'PostCardList',
-	components: { PostCard, PostCardBody },
+	components: { Post, PostCard, PostCardBody },
 };
 </script>
 
