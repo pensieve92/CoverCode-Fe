@@ -12,25 +12,23 @@
 	<!-- 새로운 마크다운 perfect-markdown 사용해보기-->
 	<!-- perfect-markdown 은 vuex가 필요하다 -->
 
+	<!-- 2022.05.28 -->
+	<!-- toastui 사용해보기 -->
+
 	<div>
 		<div>Post</div>
-		<div id="main">
-			<pmd
-				v-model="value"
-				:showToolbar="true"
-				:showTextarea="true"
-				:plugins="{ katex: true }"
-				:imgWidthHeightAttr="{ width: true, height: false }"
-			></pmd>
-		</div>
+		<editor />
 	</div>
 </template>
 
 <script>
-// import pmd from 'perf';
+import { Editor } from '@toast-ui/vue-editor';
+
+import '@toast-ui/editor/dist/toastui-editor.css';
+
 export default {
 	name: 'Post',
-	components: {},
+	components: { editor: Editor },
 	data() {
 		return {
 			value: '# hi markdown',
