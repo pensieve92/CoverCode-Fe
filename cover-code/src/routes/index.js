@@ -28,6 +28,10 @@ export default new VueRouter({
 			},
 		},
 		{
+			path: '/:menu/:postId',
+			component: () => import('@/views/PostPage.vue'),
+		},
+		{
 			path: '*',
 			component: () => import('@/views/NotFoundPage.vue'),
 		},

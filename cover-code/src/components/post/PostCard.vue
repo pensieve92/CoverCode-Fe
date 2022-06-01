@@ -126,13 +126,15 @@ export default {
 
 	methods: {
 		clickIcon() {
-			console.log('click');
-			// this.$emit("clickIcon");
+			// console.log('click');
+			// console.log('this.$router', this.$router);
+			// console.log('this.$route.path', this.$route.path);
+			this.$router.push(this.$route.path + '/postId');
 		},
 
-		toggleCollapsible(e) {
-			console.log('toggleCollapsible', e);
-			console.log('toggleCollapsible', e.target);
+		toggleCollapsible() {
+			// console.log('toggleCollapsible', e);
+			// console.log('toggleCollapsible', e.target);
 			if (this.disabled) {
 				return;
 			}
