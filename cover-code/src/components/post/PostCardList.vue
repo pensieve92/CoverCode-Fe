@@ -6,7 +6,7 @@
 		<!-- #header에 변수를 넣을면 css가 적용안된다.-->
 		<!-- <slot name='header'> 여기 안에는 아무것도 넣지 말아야 한다.!! <slot>-->
 		<!--			<PostCard style="width: 95%" title="title123">-->
-		<PostCard style="width: 95%">
+		<PostCard style="width: inherit">
 			<template #header>title123</template>
 			<template #date>2022.05.22</template>
 			<template #default>

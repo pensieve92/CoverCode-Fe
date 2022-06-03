@@ -8,6 +8,7 @@
 			@click.prevent="toggleCollapsible"
 			@keydown.enter.prevent="toggleCollapsible"
 			@keydown.space.prevent="toggleCollapsible"
+			style="width: inherit"
 		>
 			<div class="ui-collapsible__header-content" style="width: 100%">
 				<div
