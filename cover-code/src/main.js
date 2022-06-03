@@ -3,6 +3,7 @@ import App from '@/App.vue';
 import router from '@/routes';
 import KeenUI from 'keen-ui';
 import 'keen-ui/dist/keen-ui.css';
+import '@/assets/common.css';
 
 Vue.use(KeenUI);
 
