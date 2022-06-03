@@ -16,22 +16,44 @@
 	<!-- toastui 사용해보기 -->
 
 	<div>
-		<div>Post</div>
-		<editor />
+		<Viewer :initialValue="viewerText" height="100px" />
+		<Editor
+			initialValue=""
+			initialEditType="markdown"
+			:options="defaultOptions"
+			height="200px"
+			previewStyle="vertical"
+		/>
 	</div>
 </template>
 
 <script>
-import { Editor } from '@toast-ui/vue-editor';
+import { Editor, Viewer } from '@toast-ui/vue-editor';
 
 import '@toast-ui/editor/dist/toastui-editor.css';
 
 export default {
 	name: 'Post',
-	components: { editor: Editor },
+	components: { Editor, Viewer },
 	data() {
 		return {
-			value: '# hi markdown',
+			viewerText:
+				'# This is Viewer.\n Hello World.\n Hello World.\n Hello World.\n Hello World.\n Hello World.\n Hello World.\n Hello World.\n Hello World.',
+			defaultOptions: {
+				minHeight: '200px',
+				language: 'en-US',
+				useCommandShortcut: true,
+				usageStatistics: true,
+				hideModeSwitch: false,
+				toolbarItems: [
+					['heading', 'bold', 'italic', 'strike'],
+					['hr', 'quote'],
+					['ul', 'ol', 'task', 'indent', 'outdent'],
+					['table', 'image', 'link'],
+					['code', 'codeblock'],
+					['scrollSync'],
+				],
+			},
 		};
 	},
 };
