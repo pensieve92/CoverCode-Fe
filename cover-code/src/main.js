@@ -9,7 +9,7 @@ Vue.use(KeenUI);
 
 Vue.config.productionTip = false;
 // EventBus 생성
-Vue.prototype.$bus = new Vue();
+// Vue.prototype.$EventBus = new Vue();
 
 new Vue({
 	render: h => h(App),
