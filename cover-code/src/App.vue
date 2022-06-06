@@ -74,6 +74,7 @@
 					:id="menu.title"
 					:key="menu.key"
 					:title="menu.title"
+					@select="selectTab"
 				>
 					<!-- views -->
 					<router-view></router-view>
@@ -97,6 +98,7 @@ const menuOptions = [
 ];
 import 'keen-ui/src/bootstrap';
 import menus from '@/constents/menu';
+import EventBus from '@/plugin/EventBus';
 export default {
 	name: 'App',
 	data() {
@@ -104,6 +106,16 @@ export default {
 			menuOptions,
 			menus,
 		};
+	},
+	mounted() {
+		EventBus.$on('setActiveTab', tab => {
+			console.log('tab', tab);
+			// this.$refs.tabs.setActiveTab(tab.params.menu);
+			// this.setActiveTab(tab.params.menu);
+		});
+	},
+	destroyed() {
+		EventBus.$off('setActiveTab');
 	},
 	computed: {
 		textColor() {
@@ -120,6 +132,9 @@ export default {
 		},
 	},
 	methods: {
+		selectTab() {
+			console.log('selectTab');
+		},
 		async changeTab(o, n) {
 			// history
 			// 2022.05.08
@@ -128,6 +143,10 @@ export default {
 			// setActiveTab() > changTab()을 호출한다.
 			// changeTab 내부에  setActiveTab()를 호출하면 무한루프에 빠진다.
 			// this.$refs.tabs.setActiveTab('Js');
+
+			console.log('n', n.title);
+			console.log('o', o.title);
+			// console.log('this.$route', this.$route);
 
 			if (n.title === o.title) return;
 			if (n.title === 'Home') {
