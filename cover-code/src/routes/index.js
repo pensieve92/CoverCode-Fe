@@ -15,6 +15,7 @@ export default new VueRouter({
 			path: '/:menu',
 			component: () => import('@/views/BigMenuPage.vue'),
 			beforeEnter: function (to, from, next) {
+				// console.log(':menu to', to);
 				// console.log(':menu from', from);
 				const isMenu = menus.find(menu => menu.title === to.params.menu);
 				if (isMenu) {
