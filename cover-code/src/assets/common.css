@@ -1,3 +1,13 @@
 .mb05r{
     margin-bottom: 0.5rem;
 }
+.ml025r{
+    margin-left: 0.25rem;
+}
+.mt-05r{
+    margin-top: -0.5rem;
+}
+.itemLeft{
+    display: flex;
+    justify-content: flex-end;
+}
