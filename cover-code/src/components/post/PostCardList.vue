@@ -10,11 +10,12 @@
 			<template #header>title123</template>
 			<template #date>2022.05.22</template>
 			<template #default>
-				<PostCardBody>
-					<template #useTitle></template>
-					<template #useContent></template>
-					<template #explainContent></template>
-				</PostCardBody>
+				<Viewer :initialValue="viewerText" height="100px" />
+				<!--				<PostCardBody>-->
+				<!--					<template #useTitle></template>-->
+				<!--					<template #useContent></template>-->
+				<!--					<template #explainContent></template>-->
+				<!--				</PostCardBody>-->
 			</template>
 		</PostCard>
 	</div>
@@ -22,11 +23,16 @@
 
 <script>
 import PostCard from '@/components/post/PostCard';
-import PostCardBody from '@/components/post/PostCardBody';
+import { Viewer } from '@toast-ui/vue-editor';
 
 export default {
 	name: 'PostCardList',
-	components: { PostCard, PostCardBody },
+	components: { PostCard, Viewer },
+	data() {
+		return {
+			viewerText: 'test',
+		};
+	},
 };
 </script>
 
