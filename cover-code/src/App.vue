@@ -158,7 +158,13 @@ export default {
 	},
 };
 </script>
-
+<style>
+.ui-tabs .ui-tabs__body {
+	overflow-x: hidden;
+	overflow-y: scroll;
+	height: calc(100vh - 14rem);
+}
+</style>
 <!--<style lang="scss">-->
 <!--//@import '~styles/imports';-->
 <!--.page&#45;&#45;ui-toolbar {-->
