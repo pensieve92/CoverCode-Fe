@@ -4,6 +4,9 @@ import router from '@/routes';
 import KeenUI from 'keen-ui';
 import 'keen-ui/dist/keen-ui.css';
 import '@/assets/common.css';
+import moment from 'moment';
+
+moment.locale('ko');
 
 Vue.use(KeenUI);
 
