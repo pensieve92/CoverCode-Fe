@@ -10,10 +10,11 @@
 					>글쓰기
 				</ui-button>
 			</div>
-			<PostCardList></PostCardList>
+			<PostCardList :propData="sampleData"></PostCardList>
 		</div>
 		<PostAddTitleModal
 			v-if="openedModal.write"
+			@add="addPost"
 			@close="closeModal('write')"
 			:pCategory="$route.params.menu"
 		/>
@@ -32,9 +33,29 @@ export default {
 			openedModal: {
 				write: false,
 			},
+			sampleData: [
+				{
+					id: '1',
+					title: 'Test1',
+					category: 'vue',
+					content: '# help',
+					creDate: '2022.06.11',
+				},
+				{
+					id: '2',
+					title: 'Test2',
+					category: 'vue',
+					content: '# help',
+					creDate: '2022.06.11',
+				},
+			],
 		};
 	},
 	methods: {
+		addPost(post) {
+			console.log('post', post);
+			this.sampleData.push(post);
+		},
 		closeModal(btn) {
 			if (btn === 'write') this.openedModal.write = false;
 		},

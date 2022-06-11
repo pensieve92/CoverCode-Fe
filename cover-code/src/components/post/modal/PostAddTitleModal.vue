@@ -36,6 +36,9 @@
 </template>
 <script>
 import modalMixin from '@/components/mixins/common/modal.mixin';
+import uuid from '@/helpers/uuid';
+import moment from 'moment';
+
 export default {
 	name: 'PostAddTitleModal',
 	mixins: [modalMixin],
@@ -101,7 +104,10 @@ export default {
 		},
 		clickAdd() {
 			if (this.isValid()) {
-				const inputParam = {};
+				const inputParam = {
+					id: uuid.short(),
+					creDate: moment().format('L'),
+				};
 				for (const key in this.input) {
 					if (typeof this.input[key].value === 'object') {
 						inputParam[key] = this.input[key].value.map(item => item.value);
@@ -110,7 +116,7 @@ export default {
 					}
 				}
 				console.log('inputParam', inputParam);
-				return inputParam; // TODO >> Array에 추가하기
+				this.$emit('add', inputParam);
 			}
 		},
 		setCategory() {
