@@ -19,16 +19,12 @@
 					"
 				>
 					<b>
-						<slot name="header">
-							{{ title }}
-						</slot>
+						{{ post.title }}
 					</b>
 				</div>
 				<!-- TODO: @click, stop, prevent 자세히 알아보기-->
 				<span style="float: right">
-					<span>
-						<slot name="date"></slot>
-					</span>
+					<span> {{ post.creDate }} </span>
 					<ui-icon-button
 						icon="description"
 						color="default"
@@ -64,7 +60,7 @@
 				v-show="isOpen"
 			>
 				<div class="ui-collapsible__body">
-					<slot></slot>
+					<Viewer :initialValue="post.content" height="100px" />
 				</div>
 			</div>
 		</transition>
@@ -73,11 +69,16 @@
 
 <script>
 import UUID from '@/helpers/uuid';
+import { Viewer } from '@toast-ui/vue-editor';
 
 export default {
 	name: 'PostCard',
-
+	components: { Viewer },
 	props: {
+		post: {
+			type: Object,
+			default: () => {},
+		},
 		open: {
 			type: Boolean,
 			default: false,
@@ -130,7 +131,8 @@ export default {
 			// console.log('click');
 			// console.log('this.$router', this.$router);
 			// console.log('this.$route.path', this.$route.path);
-			this.$router.push(this.$route.path + '/postId');
+			console.log('clickIcon');
+			this.$router.push(this.$route.path + '/' + this.post.id + '?mode=');
 		},
 
 		toggleCollapsible() {
@@ -166,95 +168,5 @@ export default {
 			this.$emit('close');
 		},
 	},
-
-	components: {},
 };
 </script>
-
-<!--<style lang="scss">-->
-<!--@import '@/styles/imports';-->
-
-<!--$ui-collapsible-header-background: $md-grey-200 !default;-->
-<!--$ui-collapsible-header-background-hover: $md-grey-300 !default;-->
-
-<!--.ui-collapsible {-->
-<!--	font-family: $font-stack;-->
-<!--	margin-bottom: rem(8px);-->
-<!--	width: 100%;-->
-
-<!--	&:not(.is-disabled) {-->
-<!--		.ui-collapsible__header {-->
-<!--			&:hover,-->
-<!--			body[modality='keyboard'] &:focus {-->
-<!--				background-color: $ui-collapsible-header-background-hover;-->
-<!--			}-->
-<!--		}-->
-<!--	}-->
-
-<!--	&.is-open {-->
-<!--		.ui-collapsible__header-icon {-->
-<!--			transform: rotate(-180deg);-->
-<!--		}-->
-<!--	}-->
-
-<!--	&.is-disabled {-->
-<!--		.ui-collapsible__header {-->
-<!--			cursor: default;-->
-<!--			opacity: 0.6;-->
-<!--		}-->
-
-<!--		.ui-collapsible__header-icon {-->
-<!--			cursor: default;-->
-<!--		}-->
-<!--	}-->
-<!--}-->
-
-<!--.ui-collapsible__header {-->
-<!--	align-items: center;-->
-<!--	background-color: $ui-collapsible-header-background;-->
-<!--	cursor: pointer;-->
-<!--	display: flex;-->
-<!--	font-size: rem(15px);-->
-<!--	line-height: 1.5;-->
-<!--	margin: 0;-->
-<!--	min-height: rem(48px);-->
-<!--	padding: rem(12px 16px);-->
-<!--	position: relative;-->
-<!--	touch-action: manipulation; // IE-->
-<!--	width: 100%;-->
-
-<!--	.ui-ripple-ink__ink {-->
-<!--		opacity: 0.1;-->
-<!--	}-->
-<!--}-->
-
-<!--.ui-collapsible__header-content {-->
-<!--	padding-right: rem(8px);-->
-<!--}-->
-
-<!--.ui-collapsible__header-icon {-->
-<!--	color: $secondary-text-color;-->
-<!--	cursor: pointer;-->
-<!--	margin-left: auto;-->
-<!--	margin-right: rem(-4px);-->
-<!--	transition: transform 0.3s ease;-->
-<!--}-->
-
-<!--.ui-collapsible__body-wrapper {-->
-<!--	max-height: 0;-->
-<!--	transition: max-height 0.3s ease;-->
-
-<!--	&.v-enter-active,-->
-<!--	&.v-leave-active {-->
-<!--		overflow: hidden;-->
-<!--	}-->
-<!--}-->
-
-<!--.ui-collapsible__body {-->
-<!--	border: 1px solid $md-grey-200;-->
-<!--	border-top: 0;-->
-<!--	display: block;-->
-<!--	padding: rem(16px);-->
-<!--	width: 100%;-->
-<!--}-->
-<!--</style>-->

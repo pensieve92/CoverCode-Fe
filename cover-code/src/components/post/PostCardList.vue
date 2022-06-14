@@ -6,28 +6,22 @@
 		<!-- #header에 변수를 넣을면 css가 적용안된다.-->
 		<!-- <slot name='header'> 여기 안에는 아무것도 넣지 말아야 한다.!! <slot>-->
 		<!--			<PostCard style="width: 95%" title="title123">-->
-		<PostCard v-for="post in propData" :key="post.id" style="width: inherit">
-			<template #header>{{ post.title }}</template>
-			<template #date>{{ post.creDate }}</template>
-			<template #default>
-				<Viewer :initialValue="post.content" height="100px" />
-				<!--				<PostCardBody>-->
-				<!--					<template #useTitle></template>-->
-				<!--					<template #useContent></template>-->
-				<!--					<template #explainContent></template>-->
-				<!--				</PostCardBody>-->
-			</template>
+		<PostCard
+			v-for="post in propData"
+			:key="post.id"
+			:post="post"
+			style="width: inherit"
+		>
 		</PostCard>
 	</div>
 </template>
 
 <script>
 import PostCard from '@/components/post/PostCard';
-import { Viewer } from '@toast-ui/vue-editor';
 
 export default {
 	name: 'PostCardList',
-	components: { PostCard, Viewer },
+	components: { PostCard },
 	props: {
 		propData: {
 			type: Array,
