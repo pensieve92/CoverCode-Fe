@@ -5,6 +5,7 @@ import KeenUI from 'keen-ui';
 import 'keen-ui/dist/keen-ui.css';
 import '@/assets/common.css';
 import moment from 'moment';
+import store from '@/store';
 
 moment.locale('ko');
 
@@ -17,4 +18,5 @@ Vue.config.productionTip = false;
 new Vue({
 	render: h => h(App),
 	router,
+	store,
 }).$mount('#app');
