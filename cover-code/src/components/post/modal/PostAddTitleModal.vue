@@ -25,7 +25,7 @@
 			:invalid="checkValid('title')"
 			@touch="input.title.isTouched = true"
 			v-model="input.title.value"
-			@keydown-enter="clickAdd"
+			@keydown-enter.prevent="clickAdd"
 		></ui-textbox>
 
 		<div slot="footer">
