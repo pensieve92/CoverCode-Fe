@@ -46,10 +46,9 @@ export default {
 	getters: {
 		//computed
 		postsByCategory: state => category => {
-			console.log('postsAll', state.posts);
-			return state.posts.filter(
-				post => post.category === category.toLowerCase(),
-			);
+			return state.posts.filter(post => {
+				return post.category.split(',').indexOf(category.toLowerCase()) > -1;
+			});
 		},
 		postsById: state => id => {
 			const post = state.posts.find(post => post.id === id);
