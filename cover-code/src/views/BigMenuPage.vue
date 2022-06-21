@@ -37,7 +37,9 @@ export default {
 	},
 	computed: {
 		posts() {
-			return this.$store.getters['post/postsAll'];
+			return this.$store.getters['post/postsByCategory'](
+				this.$route.params.menu,
+			);
 		},
 	},
 	methods: {
