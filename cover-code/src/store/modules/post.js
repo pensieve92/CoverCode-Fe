@@ -28,26 +28,25 @@ export default {
 	},
 	mutations: {
 		//state 변경
-		ADD_POST(state, value) {
-			state.posts.push({
-				id: Math.random(),
-				text: value,
-				checked: false,
-			});
+		ADD_POST(state, post) {
+			state.posts.push(post);
 		},
 	},
 	actions: {
 		//methods
-		addPost({ commit }, value) {
+		addPost({ commit }, post) {
+			console.log('addPost', post);
+
 			//비동기 작업, axios.post DB역할 settimeout
 			setTimeout(function () {
-				commit('ADD_POST', value);
+				commit('ADD_POST', post);
 			}, 1000);
 		},
 	},
 	getters: {
 		//computed
 		postsByCategory: state => category => {
+			console.log('postsAll', state.posts);
 			return state.posts.filter(
 				post => post.category === category.toLowerCase(),
 			);

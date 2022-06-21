@@ -108,9 +108,13 @@ export default {
 					id: uuid.short(),
 					creDate: moment().format('L'),
 				};
+
 				for (const key in this.input) {
+					// array to string - category
 					if (typeof this.input[key].value === 'object') {
-						inputParam[key] = this.input[key].value.map(item => item.value);
+						inputParam[key] = this.input[key].value
+							.map(item => item.value)
+							.join(',');
 					} else {
 						inputParam[key] = this.input[key].value;
 					}

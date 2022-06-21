@@ -43,13 +43,16 @@ export default {
 		},
 	},
 	methods: {
-		addPost(post) {
-			// this.closeModal('write');
-			// this.posts.push(post);
-			// posts.addPost(post);
-			//
-			// console.log('addPost', posts.getPostsByCategory(this.$route.params.menu));
-			// this.$router.push(this.$route.path + '/' + post.id + '?mode=edit');
+		async addPost(post) {
+			this.closeModal('write');
+			await this.$store
+				.dispatch('post/addPost', post)
+				.then(() => {
+					this.$router.push(this.$route.path + '/' + post.id + '?mode=edit');
+				})
+				.catch(error => {
+					console.log(error);
+				});
 		},
 		closeModal(btn) {
 			if (btn === 'write') this.openedModal.write = false;
