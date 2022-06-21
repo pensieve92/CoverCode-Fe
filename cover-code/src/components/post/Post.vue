@@ -58,11 +58,6 @@
 			:initialValue="viewerText"
 			height="100px"
 		/>
-
-		<PostAddHistoryPopup
-			v-if="openedModal.add"
-			@close="closeModal('add')"
-		></PostAddHistoryPopup>
 	</div>
 </template>
 
@@ -70,12 +65,11 @@
 import { Editor, Viewer } from '@toast-ui/vue-editor';
 
 import '@toast-ui/editor/dist/toastui-editor.css';
-import PostAddHistoryPopup from '@/components/post/modal/PostAddHistoryModal';
 // import dummyPosts from '@/store/dummyPosts';
 
 export default {
 	name: 'Post',
-	components: { PostAddHistoryPopup, Editor, Viewer },
+	components: { Editor, Viewer },
 	computed: {
 		isEditMode() {
 			return this.mode === 'edit';
