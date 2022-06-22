@@ -58,5 +58,8 @@ export default {
 		postsAll: state => {
 			return state.posts;
 		},
+		// postInit: () => {
+		// 	return new Post();
+		// },
 	},
 };

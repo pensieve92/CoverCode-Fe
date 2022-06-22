@@ -39,6 +39,14 @@ import modalMixin from '@/components/mixins/common/modal.mixin';
 import uuid from '@/helpers/uuid';
 import moment from 'moment';
 
+function Post() {
+	this.id = uuid.short();
+	this.creDate = moment().format('L');
+	this.category = 'no category';
+	this.title = 'no title';
+	this.content = 'no content';
+}
+
 export default {
 	name: 'PostAddTitleModal',
 	mixins: [modalMixin],
@@ -103,12 +111,19 @@ export default {
 			return true;
 		},
 		clickAdd() {
+			console.log('clickAdd');
+			// FIXED 2022.06.22 javascript 에서 post Add할때 addForm
+			// 기본 default 값을 가진 Object를 만들어서
+			// 계속 재사용하고 싶다.
+			// 어떻게 사용하는게 좋을까??
+			// vuex에다가 initform 만들어서 사용하기 >> uuid가 새로 안생성된다
+			// const로 뺴야하나? ㅡmethod로 뺴야지 새로 생성 될거 같은데..
 			if (this.isValid()) {
-				const inputParam = {
-					id: uuid.short(),
-					creDate: moment().format('L'),
-				};
+				// vuex에서 getters는 처음에 호출될때 한번 만들고, 그다음부터는 만들어진 결과를 가지고 있다각
+				// 다음 호출시에 이미 생성된 결과를 리턴한다.!!
+				// const inputParam = this.$store.getters['post/postInit'];
 
+				const inputParam = new Post();
 				for (const key in this.input) {
 					// array to string - category
 					if (typeof this.input[key].value === 'object') {
