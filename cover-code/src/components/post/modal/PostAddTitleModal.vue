@@ -36,16 +36,7 @@
 </template>
 <script>
 import modalMixin from '@/components/mixins/common/modal.mixin';
-import uuid from '@/helpers/uuid';
-import moment from 'moment';
-
-function Post() {
-	this.id = uuid.short();
-	this.creDate = moment().format('L');
-	this.category = 'no category';
-	this.title = 'no title';
-	this.content = 'no content';
-}
+import { initPost } from '@/components/post';
 
 export default {
 	name: 'PostAddTitleModal',
@@ -123,7 +114,7 @@ export default {
 				// 다음 호출시에 이미 생성된 결과를 리턴한다.!!
 				// const inputParam = this.$store.getters['post/postInit'];
 
-				const inputParam = new Post();
+				const inputParam = initPost();
 				for (const key in this.input) {
 					// array to string - category
 					if (typeof this.input[key].value === 'object') {
