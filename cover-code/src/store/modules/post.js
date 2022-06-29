@@ -1,3 +1,6 @@
+const wait = timeToDelay =>
+	new Promise(resolve => setTimeout(resolve, timeToDelay)); //이와 같이 선언 후
+
 export default {
 	namespaced: true,
 	state: {
@@ -29,18 +32,36 @@ export default {
 	mutations: {
 		//state 변경
 		ADD_POST(state, post) {
+			console.log('--4-- store mutation addPost');
 			state.posts.push(post);
+		},
+		GET_POST_BY_ID(state, id) {
+			return state.posts.find(post => post.id === id);
 		},
 	},
 	actions: {
 		//methods
-		addPost({ commit }, post) {
-			console.log('addPost', post);
+		async addPost({ commit }, post) {
+			// return new Promise((resolve, reject) => {
+			// 	setTimeout(resolve, 1000);
+			// });
 
-			//비동기 작업, axios.post DB역할 settimeout
+			// 비동기 작업, axios.post DB역할 settimeout
+			// 실행하고 기다리는게 아니라
+			// 기달렸다가 실행하는 거네..
+			// return setTimeout(async function () {
+			// 	return commit('ADD_POST', post);
+			// }, 1000);
+			console.log('--3-- store action addPost');
+			await wait(1000); // 이렇게 await와 함께 사용하면 동기적으로 동작한다.
+			commit('ADD_POST', post);
+		},
+		getPostById({ commit }, id) {
+			console.log('---7--- store post getPostById id');
+
 			setTimeout(function () {
-				commit('ADD_POST', post);
-			}, 1000);
+				commit('GET_POST_BY_ID', id);
+			}, 500);
 		},
 	},
 	getters: {
@@ -51,9 +72,7 @@ export default {
 			});
 		},
 		postsById: state => id => {
-			const post = state.posts.find(post => post.id === id);
-			console.log('postsById', post);
-			return post;
+			return state.posts.find(post => post.id === id);
 		},
 		postsAll: state => {
 			return state.posts;

@@ -102,7 +102,7 @@ export default {
 			return true;
 		},
 		clickAdd() {
-			console.log('clickAdd');
+			// console.log('clickAdd');
 			// FIXED 2022.06.22 javascript 에서 post Add할때 addForm
 			// 기본 default 값을 가진 Object를 만들어서
 			// 계속 재사용하고 싶다.
@@ -125,7 +125,7 @@ export default {
 						inputParam[key] = this.input[key].value;
 					}
 				}
-				console.log('inputParam', inputParam);
+				console.log('--1-- clickAdd');
 				this.$emit('add', inputParam);
 			}
 		},

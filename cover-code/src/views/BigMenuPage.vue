@@ -43,11 +43,13 @@ export default {
 		},
 	},
 	methods: {
-		async addPost(post) {
+		addPost(post) {
 			this.closeModal('write');
-			await this.$store
+			console.log('--2-- addPost');
+			this.$store
 				.dispatch('post/addPost', post)
 				.then(() => {
+					console.log('-- 5 -- addPost then');
 					this.$router.push(this.$route.path + '/' + post.id + '?mode=edit');
 				})
 				.catch(error => {
