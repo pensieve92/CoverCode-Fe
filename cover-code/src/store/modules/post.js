@@ -35,9 +35,6 @@ export default {
 			console.log('--4-- store mutation addPost');
 			state.posts.push(post);
 		},
-		GET_POST_BY_ID(state, id) {
-			return state.posts.find(post => post.id === id);
-		},
 	},
 	actions: {
 		//methods
@@ -55,13 +52,6 @@ export default {
 			console.log('--3-- store action addPost');
 			await wait(1000); // 이렇게 await와 함께 사용하면 동기적으로 동작한다.
 			commit('ADD_POST', post);
-		},
-		getPostById({ commit }, id) {
-			console.log('---7--- store post getPostById id');
-
-			setTimeout(function () {
-				commit('GET_POST_BY_ID', id);
-			}, 500);
 		},
 	},
 	getters: {
