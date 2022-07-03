@@ -50,7 +50,7 @@ export default {
 			// 	return commit('ADD_POST', post);
 			// }, 1000);
 			console.log('--3-- store action addPost');
-			await wait(1000); // 이렇게 await와 함께 사용하면 동기적으로 동작한다.
+			await wait(500); // 이렇게 await와 함께 사용하면 동기적으로 동작한다.
 			commit('ADD_POST', post);
 		},
 	},
