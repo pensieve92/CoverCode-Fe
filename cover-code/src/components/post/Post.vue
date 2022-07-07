@@ -55,7 +55,7 @@
 		<Viewer
 			ref="viewer"
 			v-if="!isEditMode"
-			:initialValue="viewerText"
+			:initialValue="editorValue"
 			height="100px"
 		/>
 	</div>
@@ -73,7 +73,17 @@ export default {
 		isEditMode() {
 			return this.mode === 'edit';
 		},
+		// isEditMode: {
+		// 	get() {
+		// 		return this.mode === 'edit';
+		// 	},
+		// 	set(newValue) {
+		// 		console.log('🍉🍉 ' + 'newValue' + ' : ', newValue);
+		// 		return newValue;
+		// 	},
+
 		editorValue() {
+			// TODO 이름 바꾸고 싶은데 멀로 바꾸지??
 			return `# ${this.post.title} \n\n ${this.post.content}`;
 		},
 	},
@@ -163,7 +173,17 @@ export default {
 			console.log('mode', mode);
 			// this.$emit('changeMode', mode);
 			if (mode === 'edit') {
-				// this.isEditMode = true;
+				// this.isEditMode = false;
+				// this.mode = 'view';
+				// TODO mode를 어디서 받을건지!!
+				// mode를 변경해줘야하는데 emit을 사용해서 부모를 변경
+				// 아니면 mode를 prop으로 받지 말고 이페이지에서
+				// 으흠.. 모드를 어떻게 처리할건지 생각해보기
+
+				// DONE PAGE의 역활!!
+				// page는 $route의 params나 query를 받아주는 역할로 사용하자!!
+
+				this.$emit('changeMode', mode);
 			} else if (mode === 'save') {
 				let html = this.$refs.editor.invoke('getHTML');
 				let markdown = this.$refs.editor.invoke('getMarkdown');

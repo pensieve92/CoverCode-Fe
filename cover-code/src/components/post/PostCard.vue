@@ -128,11 +128,9 @@ export default {
 
 	methods: {
 		clickIcon() {
-			// console.log('click');
-			// console.log('this.$router', this.$router);
-			// console.log('this.$route.path', this.$route.path);
 			console.log('clickIcon');
-			this.$router.push(this.$route.path + '/' + this.post.id + '?mode=');
+			// this.$router.push(this.$route.path + '/' + this.post.id + '?mode=');
+			this.$router.push(this.$route.path + '/' + this.post.id);
 		},
 
 		toggleCollapsible() {
