@@ -73,15 +73,6 @@ export default {
 		isEditMode() {
 			return this.mode === 'edit';
 		},
-		// isEditMode: {
-		// 	get() {
-		// 		return this.mode === 'edit';
-		// 	},
-		// 	set(newValue) {
-		// 		console.log('🍉🍉 ' + 'newValue' + ' : ', newValue);
-		// 		return newValue;
-		// 	},
-
 		editorValue() {
 			// TODO 이름 바꾸고 싶은데 멀로 바꾸지??
 			return `# ${this.post.title} \n\n ${this.post.content}`;
@@ -95,13 +86,17 @@ export default {
 				return ['edit', 'view'].indexOf(value) > -1 ? value : 'view';
 			},
 		},
+		post: {
+			type: Object,
+			default: () => ({}),
+		},
 	},
 	data() {
 		return {
 			viewer: {
 				content: '',
 			},
-			post: {},
+			// post: {},
 			// isEditMode: false,
 			baseTemplate: `# titleZone
 
@@ -148,25 +143,6 @@ export default {
 		};
 	},
 	methods: {
-		search() {
-			const postId = this.$route.params.postId;
-			console.log('postId', postId);
-			// TODO VUEX getters, dispatch시
-			// 비동기 로직 수행순서 확인하기
-			// adddedPost 로그가 제일 늦게 찍힘..
-			// router.push시, await??
-			// TODO
-			// PostPage에서 search하는게 아니라 , Post에서 Search?
-			// 상관이 있나??
-			// 로그가 너무 많고, 중복되는 로직(search)을 하나씩 걷어내면서 확인해바야할듯
-
-			const post = this.$store.getters['post/postsById'](postId);
-			console.log('🍉🍉 ' + 'post' + ' : ', post);
-
-			if (post && post.id) {
-				this.post = post;
-			}
-		},
 		//   @param {number} id 숫자타입의 아이디
 		// @returns {string} template 템플릿 초기값
 		clickBtn(mode) {
@@ -207,7 +183,6 @@ export default {
 	},
 	created() {
 		console.log('Post created');
-		this.search();
 	},
 	destroyed() {
 		console.log('Post destroyed');

@@ -30,6 +30,11 @@ export default {
 		},
 	},
 	methods: {
+		/**
+		 * editor, viewer 활성/비활성
+		 * @param mode ['edit', 'view']
+		 * @type String
+		 */
 		changeMode(mode) {
 			this.mode = mode;
 		},
@@ -39,8 +44,19 @@ export default {
 		// 	);
 		// },
 		async search() {
+			// TODO Page에서 search를 할까?, 아니면 Post에서 search를 할까..
+			// 우선 Page에서 $route의 query, param을 받는다.
+			// 받은 $route의 정보를 Post로 넘기느냐? 아니면 page에서만 처리하느냐?
+			// id, mode를 받아
+			// mode는 그대로 전달, id도 그대로 전달!!
+			// DONE $route에서 받은 파라메터만 사용하는 검색일경우
+			// Page에서 search()해서 post 컴포넌트의 Prop으로 전달
+			// Page에 컴포넌트가 많아지면 복잡해질수 있으니?
+			// search 결과를 여러 컴포넌트에서 사용할 수도 있잖아..
+
 			// TODO getter와 dispatch를 비교해보자
 			// DONE getter는 가져오는 것만하고 dispatch는 데이터 변경만 수행할 수 있도록 하자!
+			// getter를 사용할 때는 computed를 안에서 사용하여 변경내용을 적용하자
 			const postId = this.$route.params.postId;
 			console.log('---6--- postPage postId', postId);
 			const post = this.$store.getters['post/postsById'](postId);
