@@ -161,14 +161,36 @@ export default {
 
 				this.$emit('changeMode', mode);
 			} else if (mode === 'save') {
-				let html = this.$refs.editor.invoke('getHTML');
-				let markdown = this.$refs.editor.invoke('getMarkdown');
-				this.$refs.viewer.invoke('setMarkdown', markdown);
+				// TODO props의 Post를 저장해야하는데
+				// props가 Object이면 변경이 가능함 >> watch가 안됨!
+				// Object props 변경 수정을 허용할껀가??! 허용하기 싫은데...
 
-				// this.viewer.content = html;
-				console.log('html', html);
-				console.log('markdown', markdown);
-				// this.isEditMode = false;
+				// DONE js 기본 데이터타입, 참조 데이터타입
+				// Props의 Type을 기본데이터타입과 참조데이터타입 나눠서 사용하기
+				// 1. 기본 데이터 타입[null, undefined, 문자열, 숫자, 불린] 원시값 : $emit('something')
+				// 1-1. 초기 값으로 사용하는 경우는 로컬데이터 속성으로 정의
+				// DONE prop >> initial + Something으로 네이밍하기
+				// props: ['initialCounter'],
+				//   data: function () {
+				//   return {
+				//     counter: this.initialCounter
+				//   }
+				// }
+				// 1-2.변환해야하는 경우는 computed
+				// .trim() 처럼 크게 의미없는 함수를 사용해서 정의하는게 어떤가?
+				// props: ['size'],
+				//   computed: {
+				//   normalizedSize: function () {
+				//     return this.size.trim().toLowerCase()
+				//   }
+				// }
+				// 2. 참조 데이터 타입[Object > Array, Function, RegExp] : this.post.something = someone
+				// this.post = { title: 'title',}; >>> 허용X
+				// this.post.content = markdown >>> 허용O
+
+				this.post.content = this.$refs.editor.invoke('getMarkdown');
+				this.$store.dispatch('post/updatePost', this.post);
+				this.$emit('changeMode', 'view');
 			} else if (mode === 'add') {
 				// openModal
 				this.openedModal.add = true;

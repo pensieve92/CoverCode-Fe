@@ -25,8 +25,13 @@ export default {
 		};
 	},
 	computed: {
-		mode() {
-			return this.$route.query.mode || '';
+		mode: {
+			get() {
+				return this.$route.query.mode || '';
+			},
+			set(value) {
+				return value;
+			},
 		},
 	},
 	methods: {
