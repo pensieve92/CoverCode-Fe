@@ -1,5 +1,5 @@
 <template>
-	<Post :mode="mode" :post="post" @changeMode="changeMode"></Post>
+	<Post :initial-mode="mode" :post="post" @changeMode="changeMode"></Post>
 </template>
 
 <script>

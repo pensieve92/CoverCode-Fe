@@ -71,15 +71,18 @@ export default {
 	components: { Editor, Viewer },
 	computed: {
 		isEditMode() {
-			return this.mode === 'edit';
+			return this.initialMode === 'edit';
 		},
 		editorValue() {
 			// TODO 이름 바꾸고 싶은데 멀로 바꾸지??
+
+			// TODO 게시글을 저장하게 되면 컨텐츠 : 타이틀 + 컨텐츠
+			// 타이틀이 2번 보이게 되는데 어떻게 해야 될까??
 			return `# ${this.post.title} \n\n ${this.post.content}`;
 		},
 	},
 	props: {
-		mode: {
+		initialMode: {
 			type: String,
 			default: 'view',
 			validator: value => {
@@ -150,7 +153,7 @@ export default {
 			// this.$emit('changeMode', mode);
 			if (mode === 'edit') {
 				// this.isEditMode = false;
-				// this.mode = 'view';
+				// this.initialMode = 'view';
 				// TODO mode를 어디서 받을건지!!
 				// mode를 변경해줘야하는데 emit을 사용해서 부모를 변경
 				// 아니면 mode를 prop으로 받지 말고 이페이지에서
@@ -170,6 +173,11 @@ export default {
 				// 1. 기본 데이터 타입[null, undefined, 문자열, 숫자, 불린] 원시값 : $emit('something')
 				// 1-1. 초기 값으로 사용하는 경우는 로컬데이터 속성으로 정의
 				// DONE prop >> initial + Something으로 네이밍하기
+				// initial이 붙은 prop은 기본데이터타입이므로 Emit으로 처리해준다.
+				// initial이 붙지 않은 prop은 Object 참조형 데이터이므로 그냥 사용한다.
+				// TODO data에 mode: this.initialMode 할당했는데
+				// prop수정시 data에서 mode가 변경되지 않아 computed가 돌아가지 않았다.
+				// DONE 아래처럼 prop을 data에 재할당 하는 거는 피하는게 좋을거같다.
 				// props: ['initialCounter'],
 				//   data: function () {
 				//   return {
