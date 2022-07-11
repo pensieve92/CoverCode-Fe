@@ -100,7 +100,7 @@ export default {
 				// await wait(500); // 이렇게 await와 함께 사용하면 동기적으로 동작한다.
 				// post content 업데이트
 				console.log('🍉🍉 ' + 'exitPost' + ' : ', payload);
-				commit('UPDATE_POST', payload);
+				await commit('UPDATE_POST', payload);
 			} catch (error) {
 				alert('error : ' + error);
 			}

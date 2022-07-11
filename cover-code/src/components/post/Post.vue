@@ -189,8 +189,9 @@ export default {
 				// this.post.content = markdown >>> 허용O
 
 				this.post.content = this.$refs.editor.invoke('getMarkdown');
-				this.$store.dispatch('post/updatePost', this.post);
-				this.$emit('changeMode', 'view');
+				this.$store.dispatch('post/updatePost', this.post).then(() => {
+					this.$emit('changeMode', 'view');
+				});
 			} else if (mode === 'add') {
 				// openModal
 				this.openedModal.add = true;

@@ -22,17 +22,22 @@ export default {
 	data() {
 		return {
 			post: {},
+			mode: this.$route.query.mode || '',
 		};
 	},
 	computed: {
-		mode: {
-			get() {
-				return this.$route.query.mode || '';
-			},
-			set(value) {
-				return value;
-			},
-		},
+		// TODO computed의 mode를 props로 전달하니까 안됬다.
+		// DONE computed는 컴포넌트가 리렌더링 될 수 있게 로컬데이터를 참조하는게 아니라
+		// 새로운 값을 연산해주는 역할
+		// mode: {
+		// 	get() {
+		// 		return this.$route.query.mode || '';
+		// 	},
+		// 	set(value) {
+		// 		console.log('🍉🍉 ' + 'computed' + ' : ', value);
+		// 		return value;
+		// 	},
+		// },
 	},
 	methods: {
 		/**
@@ -41,6 +46,7 @@ export default {
 		 * @type String
 		 */
 		changeMode(mode) {
+			console.log('🍉🍉 ' + 'changeMode' + ' : ', mode);
 			this.mode = mode;
 		},
 		// search() {
