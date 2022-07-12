@@ -178,6 +178,10 @@ export default {
 				// TODO data에 mode: this.initialMode 할당했는데
 				// prop수정시 data에서 mode가 변경되지 않아 computed가 돌아가지 않았다.
 				// DONE 아래처럼 prop을 data에 재할당 하는 거는 피하는게 좋을거같다.
+				// TODO 근데 또 prop을 다시 prop으로 넘겨야하는 경우는 ??
+				// data로 받아서 넘겨야 될거 같은데... 머지 뫼비우스의 띠인가??...아몰랑
+				// DONE 음.. 2단계 이상 prop을 넘겨야 될떄는 필요없을거 같은데 같은 케이스 나오면 생각해보자!
+				// DONE 로컬 데이터에 Prop의 값을 초기화하여 할당한 것이지, Prop의 initalProp이 변경된다고 로컬데이터가 변경되지 않는다.!!
 				// props: ['initialCounter'],
 				//   data: function () {
 				//   return {
