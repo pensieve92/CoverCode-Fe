@@ -42,11 +42,14 @@
 				>추가</ui-button
 			>
 		</div>
+
+		<h2>{{ post.title }}</h2>
+
 		<Editor
 			ref="editor"
 			class="mt05r"
 			v-if="isEditMode"
-			:initialValue="editorValue"
+			:initialValue="post.content"
 			initialEditType="markdown"
 			:options="editorOptions"
 			height="700px"
@@ -55,7 +58,7 @@
 		<Viewer
 			ref="viewer"
 			v-if="!isEditMode"
-			:initialValue="editorValue"
+			:initialValue="post.content"
 			height="100px"
 		/>
 	</div>
@@ -72,13 +75,6 @@ export default {
 	computed: {
 		isEditMode() {
 			return this.initialMode === 'edit';
-		},
-		editorValue() {
-			// TODO 이름 바꾸고 싶은데 멀로 바꾸지??
-
-			// TODO 게시글을 저장하게 되면 컨텐츠 : 타이틀 + 컨텐츠
-			// 타이틀이 2번 보이게 되는데 어떻게 해야 될까??
-			return `# ${this.post.title} \n\n ${this.post.content}`;
 		},
 	},
 	props: {
